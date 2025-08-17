@@ -1,17 +1,32 @@
-# Welcome to MkDocs
+---
+comment: true
+---
+# ✨ 欢迎来到我的小站 (｡♥‿♥｡) ✨
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+嗨呀！(≧▽≦)  
+这里是一个充满 **好奇心** 和 **小惊喜** 的角落～  
 
-## Commands
+---
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## 💡 我在这里做什么？
 
-## Project layout
+- 📚 分享学习笔记 & 技术文章  
+- 🎨 记录一些有趣的灵感 (๑>◡<๑)  
+- 🌱 留下生活中的小确幸  
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+---
+
+## 🐾 你可以在这里找到什么？
+
+- (｡･∀･)ﾉﾞ **轻松易懂的教程**  
+- (ﾉ>ω<)ﾉ :｡✧ **好玩的实验项目**  
+- (づ｡◕‿‿◕｡)づ **可爱有趣的碎碎念**  
+
+---
+
+## 💌 给你的话
+
+> 愿你在这里能找到一丝温暖与灵感  
+> (灬º‿º灬)♡  
+
+如果喜欢，不妨留下你的足迹吧～  
