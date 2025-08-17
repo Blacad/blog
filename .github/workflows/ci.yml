@@ -3,15 +3,23 @@ name: Deploy MkDocs
 on:
   push:
     branches:
-      - main  # 推送到 main 分支时触发
+      - main  # 当推送到 main 分支时触发
+
+permissions:
+  contents: write  # 允许推送到 gh-pages 分支
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - run: pip install mkdocs mkdocs-material
-      - run: mkdocs gh-deploy --force
+
+      - name: Install dependencies
+        run: pip install mkdocs mkdocs-material
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
