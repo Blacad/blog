@@ -1,0 +1,25 @@
+site_name: Blacad Docs
+site_url: https://Blacad.github.io/
+repo_name: Blacad/blog
+repo_url: https://github.com/Blacad/blog/
+edit_uri: tree/master/docs
+theme: 
+  name: 'material'
+  language: 'zh'
+  features:
+    - content.code.annotate
+    - navigation.tracking
+    - navigation.top
+    - navigation.tabs
+    - navigation.footer
+    - navigation.indexes
+    - header.autohide
+  custom_dir: overrides
+  palette:
+    - scheme: slate
+plugins:
+  - search
+# mkdocs.yml 相关配置
+markdown_extensions:
+  - abbr
+  - pymdownx.snippets
