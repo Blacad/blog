@@ -1,5 +1,5 @@
 ---
-comment: true
+comments: true
 ---
 # ✨ 欢迎来到我的小站 (｡♥‿♥｡) ✨
 
