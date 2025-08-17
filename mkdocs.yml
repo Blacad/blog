@@ -1,8 +1,8 @@
 site_name: Blacad Docs
-site_url: https://Blacad.github.io/
+site_url: https://Blacad.github.io/blog/
 repo_name: Blacad/blog
 repo_url: https://github.com/Blacad/blog/
-edit_uri: tree/master/docs
+edit_uri: tree/main/docs
 theme: 
   name: 'material'
   language: 'zh'
