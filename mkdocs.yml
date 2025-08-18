@@ -17,9 +17,37 @@ theme:
   custom_dir: overrides
   palette:
     - scheme: slate
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 4
 plugins:
   - search
 # mkdocs.yml 相关配置
 markdown_extensions:
   - abbr
   - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+extra_javascript:
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
+
+extra_css:
+  - https://unpkg.com/mermaid/dist/mermaid.css
+nav:
+  - 首页: 
+    - index.md
+  - 城市: 
+    - 城市/index.md
+    - 华北:
+      - 北京: 城市/华北/北京.md
+    - 城市/杭州.md
+    - 城市/武汉.md
+  - 马克思主义:
+    - 马克思主义/index.md
+    - 哲学: 
+      - 马克思主义/马克思主义哲学/index.md
+      - 马克思主义/马克思主义哲学/唯物辩证法.md

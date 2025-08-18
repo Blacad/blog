@@ -1,8 +1,7 @@
 ---
 title: (｀•ω•´)ゞ小站
 comments: true
----
-
+home: true
 ---
 # ✨ 欢迎来到我的小站 (｡♥‿♥｡) ✨
 
