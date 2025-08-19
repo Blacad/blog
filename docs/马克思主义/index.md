@@ -31,7 +31,7 @@ But anyway，本章就是全面介绍马克思主义的基本原理。
         <span class="md-tag md-tag--secondary">辩证法</span>
       </td>
       <td>
-        <span class="md-tag md-tag--green">初级</span>
+        <span class="md-tag md-tag--orange">高级</span>
       </td>
       <td><a href="马克思主义哲学/" class="md-button md-button--primary">开始学习</a></td>
     </tr>
@@ -45,7 +45,7 @@ But anyway，本章就是全面介绍马克思主义的基本原理。
       <td>
         <span class="md-tag md-tag--orange">高级</span>
       </td>
-      <td><a href="javascript:void(0)" class="md-button md-button--primary md-button--disabled" onclick="return false;">暂未开放</a></td>
+      <td><a href="javascript:void(0)" class="md-button md-button--secondary md-button--disabled" onclick="return false;">暂未开放</a></td>
     </tr>
     <tr>
       <td>科学社会主义</td>
@@ -57,7 +57,7 @@ But anyway，本章就是全面介绍马克思主义的基本原理。
       <td>
         <span class="md-tag md-tag--blue">中级</span>
       </td>
-     <td><a href="javascript:void(0)" class="md-button md-button--primary md-button--disabled" onclick="return false;">暂未开放</a></td>
+     <td><a href="javascript:void(0)" class="md-button md-button--secondary md-button--disabled" onclick="return false;">暂未开放</a></td>
     </tr>
   </tbody>
 </table>
@@ -65,44 +65,35 @@ But anyway，本章就是全面介绍马克思主义的基本原理。
 </div>
 
 <style>
+<style>
 .md-tag {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.7em;
-  margin: 2px;
-  font-weight: bold;
+  display: inline-block !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  font-size: 0.7em !important;
+  margin: 2px !important;
+  font-weight: bold !important;
 }
 
-.md-tag--primary { background-color: #00b8d4; color: white; }
-.md-tag--secondary { background-color: #6c757d; color: white; }
-.md-tag--green { background-color: #4caf50; color: white; }
-.md-tag--orange { background-color: #ff9800; color: white; }
-.md-tag--blue { background-color: #2196f3; color: white; }
-
-.md-button {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.8em;
-  transition: background-color 0.2s;
+.md-tag--primary { 
+  background-color: #00b8d4 !important; 
+  color: white !important; 
 }
-
-.md-button--primary {
-  background-color: #00b8d4;
-  color: white;
+.md-tag--secondary { 
+  background-color: #6c757d !important; 
+  color: white !important; 
 }
-
-.md-button--primary:hover {
-  background-color: #0097a7;
+.md-tag--green { 
+  background-color: #4caf50 !important; 
+  color: white !important; 
 }
-
-.md-button--disabled {
-  background-color: #cccccc !important;
-  color: #666666 !important;
-  cursor: not-allowed !important;
-  pointer-events: none;
-  opacity: 0.6;
+.md-tag--orange { 
+  background-color: #ff9800 !important; 
+  color: white !important; 
 }
+.md-tag--blue { 
+  background-color: #2196f3 !important; 
+  color: white !important; 
+}
+</style>
 </style>
