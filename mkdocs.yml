@@ -27,11 +27,14 @@ plugins:
 markdown_extensions:
   - abbr
   - pymdownx.snippets
+  - pymdownx.highlight:
+      use_pygments: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.inlinehilite
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
 
@@ -40,15 +43,22 @@ extra_css:
 nav:
   - 首页: 
     - index.md
+  - CS61A:
+    - CS61A/L1 Welcome.md
+    - CS61A/L2 Functions.md
+    - CS61A/L3 Control.md
+    - CS61A/L4 Higher-Order Function.md
+    - CS61A/L5 Environments.md
+    - CS61A/L6 Sounds.md
   - 城市: 
     - 城市/index.md
     - 华北:
       - 北京: 城市/华北/北京.md
     - 城市/杭州.md
     - 城市/武汉.md
-  - 马克思主义:
-    - 马克思主义/index.md
-    - 哲学: 
-      - 马克思主义/马克思主义哲学/index.md
-      - 马克思主义/马克思主义哲学/辩证唯物论.md
-      - 马克思主义/马克思主义哲学/唯物辩证法.md
+  # - 马克思主义:
+  #   - 马克思主义/index.md
+  #   - 哲学: 
+  #     - 马克思主义/马克思主义哲学/index.md
+  #     - 马克思主义/马克思主义哲学/辩证唯物论.md
+  #     - 马克思主义/马克思主义哲学/唯物辩证法.md
