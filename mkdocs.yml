@@ -43,19 +43,57 @@ extra_css:
 nav:
   - 首页: 
     - index.md
-  - CS61A:
-    - CS61A/L1 Welcome.md
-    - CS61A/L2 Functions.md
-    - CS61A/L3 Control.md
-    - CS61A/L4 Higher-Order Function.md
-    - CS61A/L5 Environments.md
-    - CS61A/L6 Sounds.md
-  - 城市: 
-    - 城市/index.md
-    - 华北:
-      - 北京: 城市/华北/北京.md
-    - 城市/杭州.md
-    - 城市/武汉.md
+  - CS:
+    - CS61A:
+      - CS/CS61A/index.md
+      - CS/CS61A/L1 Welcome.md
+      - CS/CS61A/L2 Functions.md
+      - CS/CS61A/L3 Control.md
+      - CS/CS61A/L4 Higher-Order Function.md
+      - CS/CS61A/L5 Environments.md
+      - CS/CS61A/L6 Sounds.md
+      - CS/CS61A/L7 Function Abstract.md
+      - CS/CS61A/L8 Function Example.md
+      - CS/CS61A/L9 Recursion.md
+      - CS/CS61A/L10 Tree Recursion.md
+      - CS/CS61A/L11 Sequences.md
+      - CS/CS61A/L12 Containers.md
+      - CS/CS61A/L13 Data Abstraction.md
+      - CS/CS61A/L14 Trees.md
+      - CS/CS61A/L15 Mutability.md
+      - CS/CS61A/L16 Iterators.md
+      - CS/CS61A/L17 Generators.md
+      - CS/CS61A/L18 Objects.md
+      - CS/CS61A/L19 Class Attributes.md
+      - CS/CS61A/L20 Inheritance.md
+      - CS/CS61A/L21 Representations.md
+      - CS/CS61A/L22 Composition.md
+      - CS/CS61A/L23 Efficiency.md
+      - CS/CS61A/L24 Decomposition.md
+      - CS/CS61A/L25 Data Example.md
+      - CS/CS61A/L28 Scheme.md
+      - CS/CS61A/L29 Scheme Lists.md
+      - CS/CS61A/L30 Calculator.md
+      - CS/CS61A/L31 Interpreters.md
+      - CS/CS61A/L32 Tail Calls.md
+      - CS/CS61A/L33 Programs as Data.md
+      - CS/CS61A/L34 Macros.md
+      - CS/CS61A/L35 SQL.md
+      - CS/CS61A/L36 Tables.md
+      - CS/CS61A/L37 Aggregation.md
+      - CS/CS61A/L38 Database.md
+      - CS/CS61A/L39 思考解决问题.md
+      - CS/CS61A/Hog/Hog.md
+      - CS/CS61A/Cats/Cats.md
+      - CS/CS61A/Ants/Ants.md
+      - CS/CS61A/Scheme/Scheme.md
+      - CS/CS61A/Note.md
+  # - 城市: 
+  #   - 城市/index.md
+  #   - 华北:
+  #     - 北京: 城市/华北/北京.md
+  #   - 城市/杭州.md
+  #   - 城市/武汉.md
   # - 马克思主义:
   #   - 马克思主义/index.md
   #   - 哲学: 
