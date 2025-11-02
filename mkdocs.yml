@@ -15,6 +15,7 @@ theme:
     - navigation.indexes
     - header.autohide
   custom_dir: overrides
+  favicon: images/favicon.png
   palette:
     - scheme: slate
 markdown_extensions:
@@ -88,6 +89,8 @@ nav:
       - CS/CS61A/Ants/Ants.md
       - CS/CS61A/Scheme/Scheme.md
       - CS/CS61A/Note.md
+    - CS70:
+      - CS/CS70/Note13.md
   # - 城市: 
   #   - 城市/index.md
   #   - 华北:
