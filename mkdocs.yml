@@ -90,7 +90,21 @@ nav:
       - CS/CS61A/Scheme/Scheme.md
       - CS/CS61A/Note.md
     - CS70:
-      - CS/CS70/Note13.md
+      - CS/CS70/Note10 Counting.md
+      - CS/CS70/Note11 Countability.md
+      - CS/CS70/Note12 Computability.md
+      - CS/CS70/Note13 Discrete Probability.md
+      - CS/CS70/Note14 Conditional Probability.md
+      - CS/CS70/Note15 RV.md
+      - CS/CS70/Note16 RV.md
+      - CS/CS70/Note17 Concentration Inequalities and the Laws of Large Numbers.md
+      - CS/CS70/Note18 Hashing and Load Balance.md
+      - CS/CS70/Note19 Geometric Probability Distributions.md
+      - CS/CS70/Note20 Continuous Probability Distribution.md
+      - CS/CS70/Note21 Markov Chains.md
+      - CS/CS70/说明.md
+      - CS/CS70/不完备补充.md
+      - CS/CS70/限与界.md
   # - 城市: 
   #   - 城市/index.md
   #   - 华北:
