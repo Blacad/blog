@@ -27,6 +27,8 @@ plugins:
 # mkdocs.yml 相关配置
 markdown_extensions:
   - abbr
+  # 高亮
+  - pymdownx.mark
   - pymdownx.snippets
   - pymdownx.highlight:
       use_pygments: true
@@ -35,9 +37,13 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  # 数学公式支持
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.inlinehilite
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
   - https://unpkg.com/mermaid/dist/mermaid.css
@@ -90,6 +96,7 @@ nav:
       - CS/CS61A/Scheme/Scheme.md
       - CS/CS61A/Note.md
     - CS70:
+      - CS/CS70/index.md
       - CS/CS70/Note10 Counting.md
       - CS/CS70/Note11 Countability.md
       - CS/CS70/Note12 Computability.md
@@ -102,7 +109,6 @@ nav:
       - CS/CS70/Note19 Geometric and Poisson Distributions.md
       - CS/CS70/Note20 Continuous Probability Distribution.md
       - CS/CS70/Note21 Markov Chains.md
-      - CS/CS70/说明.md
       - CS/CS70/不完备补充.md
       - CS/CS70/限与界.md
   # - 城市: 

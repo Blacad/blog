@@ -1,4 +1,4 @@
--  [笔记](notes/13%20discrete%20probability.pdf)
+-  [笔记](notes/13%20discrete%20possibility.pdf)
 - 本章主要是讲 具体的概率如何计算
 
 - 本章最重要的基本概念
