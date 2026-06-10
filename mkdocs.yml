@@ -51,6 +51,7 @@ nav:
   - 首页: 
     - index.md
   - CS:
+    - CS/index.md
     - CS61A:
       - CS/CS61A/index.md
       - CS/CS61A/L1 Welcome.md
