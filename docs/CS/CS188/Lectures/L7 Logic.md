@@ -1,0 +1,50 @@
+- A Knowledge Based Agent
+	- ==告诉代理一些关于世界的事实，并允许它根据手头的信息进行推理==。这种Agent被称为基于知识的代理。
+		- 比如，我们告诉代理空气在火山口周围会变得炎热和烟雾弥漫，而在水体周围则清新凉爽，那么它可以根据对大气的读取合理地推断哪些地区的景观是危险或安全的。
+	- 这种代理维护一个==知识库，它是一组逻辑句子==，编码了我们告诉代理的以及它所观察到的信息。代理还==能够进行逻辑推理，以得出新的结论==
+
+- Logic
+	- 三要素
+		- Syntax 语法 --- 句子
+		- Possible World --- 可能世界(取值)
+		- Semantics 语义 --- 将 句子 与 可能世界 联系起来
+	- ==Propositional logic==
+		- Syntax --- $P \vee (\neg Q \wedge R)$
+		- Possible world --- $\{P=true,Q=true,R=false,S=true\}$ or $1101$
+		- Semantics --- $\alpha \wedge \beta$ is true in a world iff is $\alpha$ and $\beta$ is true
+	- ==First-order logic==
+		- Syntax --- $\forall x\exists y P(x,y) \wedge \neg Q(Joe,f(x)) \Rightarrow f(x)=f(y)$
+		- Possible world --- Objects $o_1, o_2, o_3$; P holds for $<o_1,o_2>$; Q holds for $<o_3, o_2>$;$f(o_1)=o_1$; $Joe=o_3$; etc.
+		- Semantics --- 如果在$\sigma=o_j$时且$\phi$对$o_j$成立，$\phi(\sigma)$为真
+	- ==Relational databases==
+		- Syntax --- 关系句子，例如，Sibling(Ali,Bo)
+		- Possible world --- objects and relations
+		- Semantics --- sentences in the DB are true, everything else is false
+		- Knowledge Graphs
+
+- ==Inference 推论==
+	- entailment 蕴含 ---- $\alpha |= \beta$ ($\alpha$ entails $\beta$)  iff  在任何可能世界中 $\alpha$ 成立 则 $\beta$ 成立
+	- proof 证明 --- 证明是 $\alpha$ 与 $\beta$ 之间蕴涵的演示
+		- Sound algorithm(合理/一致) --- 它所声称证明的一切实际上都是蕴含
+		- Complete algorithm(完备) --- 所有蕴含都可以被证明
+		- ==Methods 证明方法==
+			- model-checking --- 对于每一个可能的世界，如果a为真，确保b也为真(穷举法)
+			- theorem-proving --- Search从a到β的证明步骤（推理规则）序列
+
+- ==Propositional logic== --- [Note](Notes/cs188-sp24-note07.pdf#page=2) 很清晰不赘述了
+	- Syntax
+	- Semantics(只写两个需要注意的)
+		- $A \Rightarrow B$ is True, 除了 A为真且B为假
+		- $A \Longleftrightarrow B$ is True 等价于 A、B同True 或 A、B 同 False
+	- Propositional logic 解释器函数 [Slides](Slides/cs188-sp24-lec07.pdf#page=14)
+	- 使用 Propositional logic 形式化解决 PacMan 问题 [Slides](Slides/cs188-sp24-lec07.pdf#page=15) 中有几页描述很清晰
+
+- ==Entails 和 Implies的区别==
+	- Entails $|=$ vs Implies $\Rightarrow$
+	- ==前者是关于句子为真的模型集合的事实表示==
+	- 后者是在命题逻辑中形成的句子
+	- Entails 本身不可能为False、而 implies 可能为False
+	- ==联系==
+		- KB是一组句子（或KB是一句包含很多^的句子）(相当于是该逻辑系统的已知事实)
+		- 如果 a $\Rightarrow$ B $\in$  KB，那么 a $\wedge$ KB |= B（肯定前件式 Modus ponens）
+		- 如果你想 a $\wedge$ KB |= B，那么把  a $\Rightarrow$ B 放进  KB 是好的
