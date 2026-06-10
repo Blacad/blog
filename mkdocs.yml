@@ -112,7 +112,7 @@ nav:
       - CS/CS70/不完备补充.md
       - CS/CS70/限与界.md
     - CS188:
-      - CS/CS188/说明.md
+      - CS/CS188/index.md
       - CS/CS188/Lectures/L1 Introduction.md
       - CS/CS188/Lectures/L2 Search.md
       - CS/CS188/Lectures/L3 Informed Search.md
@@ -123,11 +123,11 @@ nav:
       - CS/CS188/Lectures/L8 Propositional Logic.md
       - CS/CS188/Lectures/L9 First Order Logic.md
       - CS/CS188/Lectures/L10 Probability.md
-      - CS/CS188/Lectures/L11 Bayes Networks.md
+      - CS/CS188/Lectures/L11 Bayes Nets.md
       - CS/CS188/Lectures/L12 Bayes Nets - Exact Inference.md
       - CS/CS188/Lectures/L13 Bayes Nets - Approximate Inference.md
       - CS/CS188/Lectures/L14 Markov Models.md
-      - CS/CS188/Lectures/L15 HMMs.md
+      - CS/CS188/Lectures/L15 HMMS.md
       - CS/CS188/Lectures/L16 Dynamic Bayes Nets and Particle Filters.md
       - CS/CS188/Lectures/L17 Rational Decisions.md
       - CS/CS188/Lectures/L18 Markov Decision Process.md
