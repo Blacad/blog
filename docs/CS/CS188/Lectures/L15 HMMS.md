@@ -11,7 +11,7 @@
 		- Sensor model： P(Et|Xt)
 	- Joint distribution --- $P(X_0, E_0,X_1,E_1,..., X_T, E_T) = P(X_0) \prod_{t=1:T} P(X_t| X_{t-1}) P(Et| Xt)$
 	- 形态
-		- ![HMMs.png](../assets/HMMs.png)
+		- ![[HMMs.png]]
 
 - Inference tasks with HMMs
 	- Filtering : $P(X_t|e_{1:t})$

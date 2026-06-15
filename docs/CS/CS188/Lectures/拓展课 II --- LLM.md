@@ -1,0 +1,21 @@
+
+- LLM 
+	- 组成
+		- [Feature engineer](../Slides/cs188-sp24-lec27.pdf#page=8-15)
+			- Text tokenization 
+			- Word embeddings
+		- [Deep neural networks](../Slides/cs188-sp24-lec27.pdf#page=17-33)
+			- Autoregressive models
+			- self-attention mechanisms
+			- [Transformer architecture](../Slides/cs188-sp24-lec27.pdf#page=22)
+			- Multi-class classification
+	- 技术
+		- [训练](../Slides/cs188-sp24-lec27.pdf#page=34-40)
+			- Supervised Learning
+				- Self-supervised learning
+				- Instruction tuning
+			- Reinforcement learning
+				- RLHF
+		- [Policy Search](../Slides/cs188-sp24-lec27.pdf#page=43-44) --- Proximal Policy Optimization
+			- policy gradient methds
+		- Beam Search
