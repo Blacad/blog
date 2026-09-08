@@ -72,7 +72,8 @@ article:
 
 search:
   type: insight
-  index_pages: true
+  # 仅索引文章、标签与分类；排除“关于”等独立页面和 source 下的静态资源。
+  index_pages: false
 
 comment:
   type: utterances
@@ -134,3 +135,6 @@ plugins:
 providers:
   cdn: jsdelivr
   fontcdn: google
+  # Icarus 默认使用 use.fontawesome.com；该地址在部分网络环境下无法连接，
+  # 会导致 GitHub、搜索、目录等所有 Font Awesome 图标一起消失。
+  iconcdn: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css
