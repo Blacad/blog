@@ -1,2 +1,8 @@
 allowBuilds:
   hexo-util: true
+  # Inferno's postinstall only prints an OpenCollective funding message.
+  inferno: false
+
+overrides:
+  # 6.9.0 uses deprecated uppercase Babel 8 builder aliases.
+  babel-plugin-inferno: 6.8.0

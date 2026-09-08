@@ -1,0 +1,392 @@
+:root {
+  --blacad-ink: #26352b;
+  --blacad-muted: #718077;
+  --blacad-sage: #60785d;
+  --blacad-sage-deep: #465f49;
+  --blacad-sage-pale: #e8eee5;
+  --blacad-paper: #f4f5ef;
+  --blacad-card: rgba(255, 255, 252, 0.94);
+  --blacad-line: rgba(69, 92, 72, 0.14);
+  --blacad-gold: #b28a4a;
+  --blacad-shadow: 0 18px 46px rgba(44, 62, 48, 0.08);
+}
+
+html {
+  background: var(--blacad-paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--blacad-ink);
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 16px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(181, 198, 163, 0.3), transparent 28rem),
+    radial-gradient(circle at 94% 28%, rgba(225, 209, 166, 0.22), transparent 26rem),
+    var(--blacad-paper);
+}
+
+::selection {
+  color: #fff;
+  background: var(--blacad-sage);
+}
+
+/* These constraints live outside PJAX-managed theme CSS to prevent image
+   layout shifts while a new page fragment is being inserted. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.navbar-main {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 4rem;
+  border-bottom: 1px solid var(--blacad-line);
+  background: rgba(250, 250, 246, 0.86);
+  box-shadow: 0 8px 28px rgba(42, 59, 46, 0.05);
+  backdrop-filter: blur(16px) saturate(125%);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+}
+
+.navbar-main .navbar-item {
+  color: #506057;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.navbar-main .navbar-item:hover,
+.navbar-main .navbar-item.is-active {
+  color: var(--blacad-sage-deep);
+  background: rgba(96, 120, 93, 0.08);
+}
+
+.navbar-logo img,
+.footer-logo img {
+  width: 2.25rem;
+  height: 2.25rem !important;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(44, 62, 48, 0.18);
+}
+
+body > .section {
+  padding-top: 2rem;
+  padding-bottom: 3.5rem;
+}
+
+.card,
+.article-licensing.box,
+.searchbox-container {
+  overflow: hidden;
+  border: 1px solid var(--blacad-line);
+  border-radius: 1rem;
+  background: var(--blacad-card);
+  box-shadow: var(--blacad-shadow);
+}
+
+.card + .card {
+  margin-top: 1.35rem;
+}
+
+.card-content {
+  padding: 1.6rem;
+}
+
+.column-main > .card:first-child {
+  position: relative;
+}
+
+.column-main > .card:first-child::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blacad-sage), #a7b795 62%, var(--blacad-gold));
+  content: "";
+}
+
+.article .title,
+.article .content h1,
+.article .content h2,
+.article .content h3,
+.article .content h4,
+.widget[data-type="profile"] .title {
+  color: var(--blacad-ink);
+  font-family: "Iowan Old Style", "Noto Serif CJK SC", "Songti SC", STSong, serif;
+  font-weight: 700;
+}
+
+.article .title {
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.article .title a {
+  color: inherit;
+}
+
+.article .title a:hover {
+  color: var(--blacad-sage);
+}
+
+.article-meta,
+.article-meta a,
+.link-muted,
+.widget .date {
+  color: var(--blacad-muted) !important;
+}
+
+.article .content {
+  color: #334239;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.article .content h2 {
+  margin-top: 2.65rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--blacad-line);
+}
+
+.article .content h2::before {
+  display: inline-block;
+  width: 0.32rem;
+  height: 1.15em;
+  margin-right: 0.65rem;
+  border-radius: 99px;
+  background: linear-gradient(var(--blacad-sage), var(--blacad-gold));
+  vertical-align: -0.16em;
+  content: "";
+}
+
+.article .content h3 {
+  margin-top: 2.1rem;
+}
+
+.article .content a {
+  color: var(--blacad-sage-deep);
+  text-decoration-color: rgba(70, 95, 73, 0.35);
+  text-underline-offset: 0.2em;
+}
+
+.article .content a:hover {
+  color: var(--blacad-gold);
+  text-decoration-color: currentColor;
+}
+
+.article .content blockquote {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--blacad-sage);
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #526159;
+  background: var(--blacad-sage-pale);
+}
+
+.article .content :not(pre) > code {
+  padding: 0.16em 0.42em;
+  border: 1px solid rgba(96, 120, 93, 0.16);
+  border-radius: 0.35rem;
+  color: #4c624e;
+  background: #edf1e9;
+}
+
+.article .content pre,
+.article .content .highlight {
+  border-radius: 0.75rem;
+}
+
+.article .content table {
+  overflow: hidden;
+  border-radius: 0.6rem;
+}
+
+.article .content table th {
+  color: var(--blacad-ink);
+  background: var(--blacad-sage-pale);
+}
+
+.article-more,
+.button.is-primary {
+  border-color: var(--blacad-sage) !important;
+  color: #fff !important;
+  background: var(--blacad-sage) !important;
+  box-shadow: 0 7px 18px rgba(70, 95, 73, 0.18);
+}
+
+.article-more:hover,
+.button.is-primary:hover {
+  border-color: var(--blacad-sage-deep) !important;
+  background: var(--blacad-sage-deep) !important;
+  transform: translateY(-1px);
+}
+
+.article-licensing.box {
+  border-left: 4px solid var(--blacad-gold);
+  background: linear-gradient(135deg, rgba(232, 238, 229, 0.9), rgba(255, 255, 252, 0.96));
+}
+
+.widget[data-type="profile"] .card-content {
+  padding-top: 2rem;
+}
+
+.widget[data-type="profile"] figure.image.is-128x128 {
+  flex: none;
+  width: 8rem;
+  height: 8rem;
+}
+
+.widget[data-type="profile"] .avatar {
+  display: block;
+  width: 8rem !important;
+  max-width: 8rem;
+  height: 8rem !important;
+  object-fit: cover;
+  border: 5px solid rgba(255, 255, 255, 0.95);
+  outline: 1px solid rgba(96, 120, 93, 0.22);
+  box-shadow: 0 14px 30px rgba(47, 66, 52, 0.18);
+}
+
+.widget[data-type="profile"] .heading,
+.menu-label {
+  color: var(--blacad-muted);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.menu-list a {
+  border-radius: 0.5rem;
+  color: #536259;
+}
+
+.menu-list a:hover {
+  color: var(--blacad-sage-deep);
+  background: rgba(96, 120, 93, 0.08);
+}
+
+.tag:not(body) {
+  color: #526456;
+  background: var(--blacad-sage-pale);
+}
+
+/* 右栏只承载目录：限制在视口内并独立滚动，阅读长文时始终悬挂可见。 */
+@media screen and (min-width: 1216px) {
+  /* Icarus 的两栏页面默认会把左栏放大到 1/3；这里与“关于”页
+     的三栏基准对齐，让左侧个人信息始终保持 1/4 宽度。 */
+  body.is-2-column > .section > .container,
+  body.is-2-column > .navbar .container,
+  body.is-2-column > .footer .container {
+    width: 1152px;
+    max-width: 1152px;
+  }
+
+  body.is-2-column .column-main.is-8-widescreen {
+    width: 75%;
+    flex: none;
+  }
+
+  body.is-2-column .column-left.is-4-widescreen {
+    width: 25%;
+    flex: none;
+  }
+
+  /* 仅配置了文章目录时，列表页仍会生成一个空的右栏外壳。 */
+  body.is-2-column .column-right:empty {
+    display: none;
+  }
+
+  .column-right.is-sticky {
+    top: 5.25rem;
+    max-height: calc(100vh - 6.5rem);
+    align-self: flex-start;
+    overflow-y: auto;
+    scrollbar-color: rgba(96, 120, 93, 0.34) transparent;
+    scrollbar-width: thin;
+  }
+
+  .column-right.is-sticky::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .column-right.is-sticky::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: rgba(96, 120, 93, 0.34);
+  }
+}
+
+#toc .menu-list a {
+  padding: 0.48rem 0.65rem;
+  border-left: 2px solid transparent;
+  font-size: 0.87rem;
+  line-height: 1.45;
+}
+
+#toc .menu-list a.is-active {
+  border-left-color: var(--blacad-gold);
+  color: var(--blacad-sage-deep);
+  background: linear-gradient(90deg, rgba(96, 120, 93, 0.12), transparent);
+}
+
+.searchbox {
+  background: rgba(37, 50, 41, 0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.searchbox-container {
+  border-radius: 1.1rem;
+}
+
+.searchbox-input {
+  color: var(--blacad-ink);
+}
+
+.searchbox-result-item:hover,
+.searchbox-result-item.active {
+  background: var(--blacad-sage-pale);
+}
+
+.footer {
+  border-top: 1px solid var(--blacad-line);
+  color: var(--blacad-muted);
+  background: rgba(235, 239, 230, 0.82);
+}
+
+.footer a {
+  color: var(--blacad-sage-deep);
+}
+
+#back-to-top {
+  border-radius: 50%;
+  color: #fff;
+  background: var(--blacad-sage);
+  box-shadow: 0 8px 20px rgba(45, 63, 49, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+  body > .section {
+    padding: 1rem 0.75rem 2.5rem;
+  }
+
+  .card-content {
+    padding: 1.25rem;
+  }
+
+  .card,
+  .article-licensing.box {
+    border-radius: 0.85rem;
+  }
+
+  .article .content {
+    line-height: 1.82;
+  }
+}
