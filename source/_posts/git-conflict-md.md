@@ -1,13 +1,12 @@
 ---
-title: git-conflict.md
+title: git 冲突解决
 date: 2026-09-10 01:11:34
 categories:
  - 实践技术
 tags:
  - git
+comments: true
 ---
-
-## git 冲突解决
 
 介绍 `git rebase` 和 `git merge` 的处理冲突的区别，以及如何解决冲突。
 
