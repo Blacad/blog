@@ -7,7 +7,6 @@ categories:
 tags:
   - Hexo
   - Icarus
-  - Markdown
 description: 从创建文章、管理图片，到使用分类、标签、搜索、目录与评论，这篇文章说明了这个博客的日常使用方式。
 comments: true
 ---
