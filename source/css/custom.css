@@ -172,15 +172,43 @@ body > .section {
   margin-top: 2.1rem;
 }
 
-.article .content a {
+.article .content a[href]:not(.headerlink):not(.button):not(.fancybox) {
   color: var(--blacad-sage-deep);
-  text-decoration-color: rgba(70, 95, 73, 0.35);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-decoration-color: currentColor;
   text-underline-offset: 0.2em;
 }
 
-.article .content a:hover {
-  color: var(--blacad-gold);
-  text-decoration-color: currentColor;
+.article .content a[href]:not(.headerlink):not(.button):not(.fancybox):hover {
+  color: #75551f;
+  text-decoration-thickness: 0.13em;
+}
+
+.article .content a[href]:focus-visible {
+  outline: 2px solid var(--blacad-sage-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.article .content .mermaid-diagram {
+  margin: 1.75rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--blacad-line);
+  border-radius: 0.75rem;
+  background: #fff;
+  text-align: center;
+}
+
+.article .content .mermaid-diagram svg {
+  height: auto;
+  max-width: 100%;
+}
+
+.article .content .mermaid-error {
+  color: #75551f;
+  font-size: 0.875rem;
 }
 
 .article .content blockquote {

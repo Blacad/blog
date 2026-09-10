@@ -120,6 +120,10 @@ widgets:
     collapsed: false
     depth: 3
 
+# 自定义扩展，由 scripts/inject-mermaid.js 接入。
+mermaid:
+  enable: true
+
 plugins:
   animejs: true
   back_to_top: true

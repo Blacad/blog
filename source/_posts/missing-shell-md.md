@@ -6,14 +6,16 @@ categories:
  - missing-semester
 tags:
  - shell
+description: MIT Missing Semester Shell 介绍
 comments: true
 ---
 ## Source
 ---
-英文课程[笔记](https://missing.csail.mit.edu/2020/course-shell/)
-中文课程[笔记](https://missing-semester-cn.github.io/2020/course-shell/)
+[英文课程笔记](https://missing.csail.mit.edu/2020/course-shell/)
+[中文课程笔记](https://missing-semester-cn.github.io/2020/course-shell/)
+
+<!-- more -->
 ## Shell
----
 ### Shell 是什么
 - ❓shell的工作原理
 	- shell 基于空格分割命令并进行解析，然后执行第一个单词代表的程序，并将后续的单词作为程序可以访问的参数。如果您希望传递的参数中包含空格（例如一个名为 My Photos 的文件夹），您要么用使用单引号，双引号将其包裹起来，要么使用转义符号 `\` 进行处理（`My\ Photos`）。

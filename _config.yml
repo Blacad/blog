@@ -50,6 +50,9 @@ marked:
   lazyload: true
 syntax_highlighter: highlight.js
 highlight:
+  # 保留 Mermaid 源码供浏览器渲染，不添加高亮行号和表格。
+  exclude_languages:
+    - mermaid
   line_number: true
   auto_detect: false
   tab_replace: ''
