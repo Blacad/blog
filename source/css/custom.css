@@ -211,6 +211,14 @@ body > .section {
   font-size: 0.875rem;
 }
 
+/* MathJax 3 的长公式在正文内滚动，避免被卡片裁切。 */
+.article .content mjx-container[display="true"] {
+  max-width: 100%;
+  padding: 0.35rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .article .content blockquote {
   margin: 1.75rem 0;
   padding: 1rem 1.25rem;

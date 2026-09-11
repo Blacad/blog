@@ -130,7 +130,8 @@ plugins:
   busuanzi: false
   gallery: true
   katex: false
-  mathjax: false
+  # 支持 $$ ... $$ LaTeX 公式；scripts/math-markdown.js 保护公式源码。
+  mathjax: true
   outdated_browser: false
   # PJAX 不会同步 Icarus 的两栏/三栏 body 状态，也不会重放侧栏入场动画。
   pjax: false
