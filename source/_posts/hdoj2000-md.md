@@ -17,6 +17,7 @@ comments: true
 
 题目本身描述非常简单，就是多行3字符输入，需要把每行字符按ASCII码排序，从小到大输出。
 我的实现如下:
+C++:
 ```cpp
 #include <iostream>
 #include <string>
@@ -53,10 +54,12 @@ int main() {
 排序选了最简单的选择排序，因为题目中的排序要求比较小，因此对时间复杂度要求并不高，选排的 worst case 是 $O(n^2)$
 
 读输入流：
+C++:
 ```cpp
 while (getline(cin, s)) {} // 读输入行，读入字符串
 ```
 
+Python:
 ```python
 for line in sys.stdin: #读输入行，读入字符串
 for line in sys.stdin.buffer: #读入行，读入字节序列，相比stdin少了很多额外步骤，往往更快，更常用
@@ -64,12 +67,13 @@ input = sys.stdin.buffer.readline # 重写 input 函数，读入一行，返回�
 ``` 
 
 string 的不同：
-
+C++:
 ```cpp
 string s = ""; // 可变对象
 s[0] = 'a'; // 正确
 ```
 
+Python:
 ```python
 s = "" # 不可变对象
 s[0]=a # 报错
