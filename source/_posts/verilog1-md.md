@@ -367,3 +367,78 @@ CPU_TOP
 ```
 利用 Top Module 来构成相对复杂的硬件结构。
 
+## vivado 组件
+
+```text
+Design Sources
+→ 真正准备综合成硬件的 RTL
+
+Constraints
+→ FPGA pin / timing 等约束
+
+Simulation Sources
+→ testbench
+```
+
+### IP 封装
+
+IP 封装可以理解成：
+
+> **把你写好的一个 Verilog 模块，包装成一个“可重复调用的标准硬件组件”。**
+
+比如你原本有：
+
+```verilog
+module MUX2T1_5(
+    input  [4:0] I0,
+    input  [4:0] I1,
+    input        s,
+    output [4:0] o
+);
+```
+
+封装成 IP 后，Vivado 会把它当成一个独立模块保存到 IP Repository。之后别的工程里可以像调用官方 IP 一样调用它，而不用每次都手动复制源码。
+
+大致流程是：
+
+```text
+自己写的 Verilog 模块
+        ↓
+验证功能正确
+        ↓
+Create and Package New IP
+        ↓
+设置 IP 名称、版本、接口等信息
+        ↓
+加入 IP Repository
+        ↓
+以后可在 IP Catalog 中重复使用
+```
+
+在 Lab0 里，slides 让你先完成 `MUX2T1_5` 的 Behavioral Simulation，确认正确之后，再使用 `Tools → Create and Package New IP` 进行封装。
+
+你可以把它和“普通子模块”区分一下：
+
+```text
+普通 .v 子模块
+→ 当前工程里直接实例化
+
+封装后的 IP
+→ 变成一个标准化、可复用、可放入 IP Catalog 的组件
+```
+
+本质上它**没有把 MUX 变成另一种硬件**，只是增加了一层工程管理和复用的包装。
+
+后面课程这么做的目的很明显：先把 `MUX2T1_5`、`MUX2T1_8`、`MUX2T1_32` 等基础模块封装好，后续 CPU datapath 里就可以重复使用，而不必每次重新写。
+
+```
+普通 module
+→ 当前工程源码里直接定义
+→ 直接实例化
+
+封装 IP
+→ 放进 IP Repository
+→ 当前工程识别这个 Repository
+→ 在 IP Catalog 里加入/生成 IP
+→ 再在其他 module 中实例化
+```
