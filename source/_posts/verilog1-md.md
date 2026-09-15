@@ -260,7 +260,7 @@ Water_LED uut (
 
 initial begin
     clk = 0;
-    forever #5 clk = ~clk;
+    always #5 clk = ~clk;
 end
 
 initial begin
@@ -277,7 +277,7 @@ endmodule
 ```
 
 `timescale 1ns / 1ps 可以先理解为 仿真的主要时间单位 = 1 ns
-forever #5 clk = ~clk; 每过5ns，clk取反 (always #5 clk = ~clk 也行)
+always #5 clk = ~clk; 每过5ns，clk取反
 
 快速仿真小技巧：使用参数
 ```verilog
