@@ -3,7 +3,7 @@ title:
 date: 2026-09-13 13:58:32
 categories:
   - 实践技术
-  - verilog
+  - verilog&VIVADO
 tags:
   - 计组助教
 comments: true
