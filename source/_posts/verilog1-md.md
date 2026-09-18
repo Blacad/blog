@@ -1,5 +1,5 @@
 ---
-title: 
+title: verilog 基础
 date: 2026-09-13 13:58:32
 categories:
   - 实践技术

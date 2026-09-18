@@ -1,5 +1,5 @@
 ---
-title: vivado1
+title: vivado 基础
 date: 2026-09-18 21:00:29
 categories:
   - 实践技术
