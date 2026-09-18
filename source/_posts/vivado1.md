@@ -174,3 +174,27 @@ Create and Package New IP
 
 要使用时，就将其添加到工程文件中，然后在 IP Catalog 中选择它，然后就可以在代码里实例化它了。
 当然，IP Catalog 中也可以添加其他 IP，比如官方的 IP，比如 lab0中就添加了 Distributed Memory 和 Block Memory。
+Xilinx IP 就可以理解为：Xilinx 提供的、已经设计并验证好的硬件功能模块。
+Xilinx IP 有：
+- ROM / RAM / Block Memory
+- FIFO
+- Clock Wizard（时钟管理）
+- 乘法器、除法器
+- BRAM Controller
+- AXI 接口模块
+- 各种通信接口等
+
+IP 封装可以选择 带源文件的版本，也可以选择 不带源文件的版本，
+带源文件时比较方便，不带源文件时配置起来会比较麻烦，需要跑综合，然后得到 .edf 和 .v 端口文件
+
+带源文件 - xgui、component、source
+不带源文件 - xgui、component、.edf、.v
+- .edf：真正的电路实现。它是综合后的网表，已经从 RTL 变成了门级/逻辑级的连接关系。
+- .v：这里通常不是原始源码，而是 stub 空壳文件，只保留 module 名称和输入输出端口，让 Vivado 和其他 Verilog 模块知道“这个 IP 有哪些接口”。
+- component.xml：描述这个 IP 的名称、版本、端口、文件等封装信息。
+- xgui：描述 Vivado 中 IP 配置界面的相关信息。
+
+```tcl
+write_verilog -mode synth_stub .../xxx.v
+write_edif .../xxx.edf
+```
