@@ -8,6 +8,10 @@ tags:
   - 计组助教
 comments: true
 ---
+
+本文介绍 vivado 的基础知识，看完本文应该基本能够使用 vivado 进行编码
+
+<!--more-->
 ## 完整的vivado过程
 
 ```text
