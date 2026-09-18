@@ -9,7 +9,7 @@ tags:
 comments: true
 ---
 
-verilog 的介绍以及vivado的基本使用
+verilog 的基本介绍
 
 <!--more-->
 ## 基本对象
@@ -35,6 +35,19 @@ assign 连续赋值，o 永远由右边这个逻辑决定，只要输入改变�
 
 Verilog 是描述硬件，而不是执行代码，因此要将一个模块以完整的视角看待
 
+Verilog 要以 ==模块== 的视角思考问题，
+
+### wire&reg
+
+assign 的 左值，需声明为 wire
+
+always 块、initial 块 中 的左值，需声明为 reg
+
+reg 不是真实的硬件寄存器，而是可用于赋值的变量
+
+input、output 只是说明端口方向，并不说明类型，默认为 wire
+
+
 ### 数据
 ```verilog
 5'b00101 
@@ -42,6 +55,7 @@ Verilog 是描述硬件，而不是执行代码，因此要将一个模块以完
 ```
 5 bit 二进制表示
 8 bit 十六进制表示
+或者称为 constant
 
 ### 实例
 在testbench里面需要创建实例来验证电路是否正确
@@ -71,6 +85,11 @@ end
 实例中，左侧是接口，括号里的是传入接口的信号
 initial  可以视作仿真开始时执行一次这段测试过程
 #10 表示延时10个clock
+
+### IP
+
+IP 的全称是 Intellectual Property，通常翻译为 知识产权核，简称 IP 核。
+其实就是将 设计封装，于是可以复用。
 
 ## 组合逻辑与时序逻辑
 
@@ -180,27 +199,19 @@ end
 后者，每个上升沿，A、B都会变成B的值
 随后第二条中的 A，按照 blocking assignment 的语义，已经代表前一条赋值得到的值
 
+除了上述的说明外，连续赋值(assign) 与 过程赋值(always/initial) 也需要区分
+
+连续赋值不必多说，需要使用 =，且只能表示组合逻辑
+
+过程赋值，可以表示组合逻辑亦可表示时序逻辑
+- 对于=，类似于 c 语言执行过程，可以视为一行行执行(阻塞)
+- 对于 <=, 则是 右值同时计算出来(用旧的值)，然后赋给左值
 
 
-## 完整的vivado过程
 
-```text
-Verilog -> Behavioral Simulation(testbench) -> Synthesis -> Constraints -> Implementation -> Bitstream -> FPGA
-```
-Verilog 描述硬件设计 .v
-Behavioral simulation 在逻辑层面上测试硬件设计是否正确 .v
-(RTL Analysis) -> 可以看vivado认为你的硬件到底描述了什么，是否把mux写成latch了
-Synthesis  回答 需要什么逻辑资源？和 逻辑上谁和谁连接？
-Constraints  回答 实现必须满足哪些外部/时序要求？和 哪些顶层端口对应哪些 Pin？ .xdc
-Implementation 布局 + 布线
-  - synthesis 后逻辑连接关系确认，但是AND 对应哪个具体 LUT？两个 LUT 在芯片哪里？x 这根 net 使用哪组物理 routing wire？等由该部分负责
-  - 布线主要是指中间线怎么走，比如你约束了端口，但是内部两个端口相接可能需要routing，而routing就有该部分负责
-  - 回答具体用 FPGA 哪些物理资源？放哪里？物理线路具体怎么走？
-(Timing) 时钟周期 < 数据传播时间 可能出错
-Bitstream：把最终设计变成 FPGA 配置数据
-Program Device：把 bitstream 写进 FPGA
 
-## 简单时序逻辑
+
+### 简单时序逻辑
 
 以LED灯的实现为例，描述电路逻辑：
 
@@ -279,7 +290,11 @@ endmodule
 `timescale 1ns / 1ps 可以先理解为 仿真的主要时间单位 = 1 ns
 always #5 clk = ~clk; 每过5ns，clk取反
 
-快速仿真小技巧：使用参数
+
+
+## 其他技巧
+
+### 快速仿真小技巧：使用参数
 ```verilog
 module Water_LED #(
     parameter LIMIT = 99_999_999
@@ -299,146 +314,11 @@ Water_LED #(
 );
 ```
 
-Verilog 的四值逻辑：
+### Verilog 的四值逻辑
 
 0 1 x z
 x=unknow
 z是高阻态，常出现于三态总线 或 IO pin
 
-## Top Module、Hierarchy
-
-Top Module 示例：
-```verilog
-module top(
-    input [10:0] SW,
-    output [4:0] LED
-);
-
-MUX2T1_5 u_mux (
-    .I0(SW[4:0]),
-    .I1(SW[9:5]),
-    .s(SW[10]),
-    .o(LED)
-);
-
-endmodule
-```
-Top Module 是整个设计的最外层模块，约束文件 .xdc 只用关注最外层模块，用Top Module 的端口。
-只有顶层 ports 才构成整个设计与 FPGA 外部引脚之间的边界
-相对复杂一些的Top Module：
-```verilog
-module top(
-    input a,
-    input b,
-    input c,
-    output y
-);
-
-wire w;
-
-AND2 u1(
-    .a(a),
-    .b(b),
-    .y(w)
-);
-
-AND2 u2(
-    .a(w),
-    .b(c),
-    .y(y)
-);
-
-endmodule
-```
-不是有一个 .v 就有一个硬件，硬件真实对应实例化
 
 
-Hierarchy 示例：
-
-```verilog
-CPU_TOP
-├── PC
-├── InstructionMemory
-├── Controller
-├── RegFile
-├── ALU
-├── DataMemory
-└── MUXes
-```
-利用 Top Module 来构成相对复杂的硬件结构。
-
-## vivado 组件
-
-```text
-Design Sources
-→ 真正准备综合成硬件的 RTL
-
-Constraints
-→ FPGA pin / timing 等约束
-
-Simulation Sources
-→ testbench
-```
-
-### IP 封装
-
-IP 封装可以理解成：
-
-> **把你写好的一个 Verilog 模块，包装成一个“可重复调用的标准硬件组件”。**
-
-比如你原本有：
-
-```verilog
-module MUX2T1_5(
-    input  [4:0] I0,
-    input  [4:0] I1,
-    input        s,
-    output [4:0] o
-);
-```
-
-封装成 IP 后，Vivado 会把它当成一个独立模块保存到 IP Repository。之后别的工程里可以像调用官方 IP 一样调用它，而不用每次都手动复制源码。
-
-大致流程是：
-
-```text
-自己写的 Verilog 模块
-        ↓
-验证功能正确
-        ↓
-Create and Package New IP
-        ↓
-设置 IP 名称、版本、接口等信息
-        ↓
-加入 IP Repository
-        ↓
-以后可在 IP Catalog 中重复使用
-```
-
-在 Lab0 里，slides 让你先完成 `MUX2T1_5` 的 Behavioral Simulation，确认正确之后，再使用 `Tools → Create and Package New IP` 进行封装。
-
-你可以把它和“普通子模块”区分一下：
-
-```text
-普通 .v 子模块
-→ 当前工程里直接实例化
-
-封装后的 IP
-→ 变成一个标准化、可复用、可放入 IP Catalog 的组件
-```
-
-本质上它**没有把 MUX 变成另一种硬件**，只是增加了一层工程管理和复用的包装。
-
-后面课程这么做的目的很明显：先把 `MUX2T1_5`、`MUX2T1_8`、`MUX2T1_32` 等基础模块封装好，后续 CPU datapath 里就可以重复使用，而不必每次重新写。
-
-```
-普通 module
-→ 当前工程源码里直接定义
-→ 直接实例化
-
-封装 IP
-→ 放进 IP Repository
-→ 当前工程识别这个 Repository
-→ 在 IP Catalog 里加入/生成 IP
-→ 再在其他 module 中实例化
-```
