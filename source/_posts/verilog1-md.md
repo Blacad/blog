@@ -37,25 +37,46 @@ Verilog 是描述硬件，而不是执行代码，因此要将一个模块以完
 
 Verilog 要以 ==模块== 的视角思考问题，
 
-### wire&reg
+### net&variable
 
-assign 的 左值，需声明为 wire
+assign 的 左值，需声明为 wire(net)(wire\tri\wand\wor等)
 
-always 块、initial 块 中 的左值，需声明为 reg
+always 块、initial 块 中 的左值，需声明为 reg(variable)(reg\integer\time\real等)
 
 reg 不是真实的硬件寄存器，而是可用于赋值的变量
 
 input、output 只是说明端口方向，并不说明类型，默认为 wire
+inout 是特殊的端口方向说明，默认也是wire，且不能被声明为 reg
+
+input 一般就是声明为 wire，默认可以不管
+
+net 表示“谁在驱动这根线”；variable 表示“过程执行时这个对象被更新”
 
 
 ### 数据
 ```verilog
 5'b00101 
 8'hAF
+reg a;
+wire b;
+reg [31:0] a;
+wire [31:0] b;
+reg [31:0] a [1:31];
+wire [31:0] b [1:31]; // 通常不会这么用的
 ```
 5 bit 二进制表示
 8 bit 十六进制表示
 或者称为 constant
+
+reg a 就是 定义一个 1 位变量 a
+wire b 就是 定义一根 1 位网络线 b
+reg [31:0] a 就是 定义一个 32 位变量 a
+wire [31:0] b 就是 定义一个32位网络线 b
+reg [31:0] a [1:31] 就是 定义一个 reg 数组，包含 a[1] 到 a[31] 共 31 个元素，每个元素都是 32 位。
+
+
+
+
 
 ### 实例
 在testbench里面需要创建实例来验证电路是否正确
@@ -98,8 +119,17 @@ IP 的全称是 Intellectual Property，通常翻译为 知识产权核，简称
 组合逻辑：
   assign
   always @(*)
+  always @(a or b or c) // 必须包含所有依赖值
 时序逻辑：
   always @(posedge clk)
+  always @(negedge clk)
+  always @(posedge clk or negedge rst)
+其他：
+    always @(a)
+不合法：
+    always @(a and b)
+意义不同：
+    always @(a&b) // 表示 a&b 整体变化触发
 ```
 
 之前的MUX也可以写成:
