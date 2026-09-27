@@ -37,7 +37,7 @@ Verilog 是描述硬件，而不是执行代码，因此要将一个模块以完
 
 Verilog 要以 ==模块== 的视角思考问题，
 
-### net&variable
+### net&variable&其他对象类型
 
 assign 的 左值，需声明为 wire(net)(wire\tri\wand\wor等)
 
@@ -51,6 +51,14 @@ inout 是特殊的端口方向说明，默认也是wire，且不能被声明为 
 input 一般就是声明为 wire，默认可以不管
 
 net 表示“谁在驱动这根线”；variable 表示“过程执行时这个对象被更新”
+
+| 类别 | 例子 | 是否能在运行过程中改变 | 主要用途 |
+|---|---|---:|---|
+| **net** | `wire`, `tri`, `wand`, `wor` | 由驱动源决定 | 表示连线 |
+| **variable** | `reg`, `integer`, `time`, `real` | 可以 | 保存过程赋值的值 |
+| **parameter constant** | `parameter`, `localparam` | 不可以 | 设计时常量、模块参数 |
+| **genvar** | `genvar i;` | 不属于运行时变量 | `generate` 展开硬件 |
+| **event** | `event e;` | 不是普通数值 | 仿真中的事件同步 |
 
 
 ### 数据

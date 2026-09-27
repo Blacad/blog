@@ -198,3 +198,67 @@ IP 封装可以选择 带源文件的版本，也可以选择 不带源文件的
 write_verilog -mode synth_stub .../xxx.v
 write_edif .../xxx.edf
 ```
+
+### vivado 项目的文件夹目录
+
+#### 引入IP的文件夹结构
+
+```text
+IP_Include                 自己准备的 IP 仓库
+
+OExp01-ALU.srcs             当前工程的源文件
+ ├── sources_1
+ │    ├── new               Verilog 等设计源
+ │    └── ip                当前工程加入的 IP
+ ├── sim_1                  testbench 等仿真源
+ └── constrs_1              .xdc 约束
+
+OExp01-ALU.ip_user_files    IP 生成后供仿真/调用等使用的辅助文件
+
+OExp01-ALU.cache            Vivado 缓存
+
+OExp01-ALU.hw               硬件相关工程数据
+
+OExp01-ALU.xpr              Vivado 工程入口文件
+```
+
+IP_Include 是 自己准备的 IP 仓库，并不是Vivado自然生成的，这是一个好的实践，把自己封装好的 IP 放在使用项目的根目录中，在 vivado 中能够添加这个目录，就能够搜索到内部的所有 IP 了，方便使用
+
+.xxx 都是 vivado 自己生成的，不要自己手动更改这些文件，最好通过 vivado 的界面去操作这些文件，避免不必要的错误或者麻烦
+
+```text
+IP_Include             ≈ library
+                         ↓
+                       选择一个模块
+                         ↓
+.srcs/sources_1/ip     ≈ 当前项目中的 dependency / instance
+```
+
+#### .srcs 文件夹内容解析
+```text
+OExp01-ALU.srcs/
+└── sources_1/
+    ├── new/
+    ├── imports/
+    ├── ip/
+    └── bd/
+```
+
+new/：在当前 Vivado 工程中通过 Create File 新建的源码。
+imports/：通过 Add Sources 添加已有文件，并且通常勾选了 Copy sources into project 后，Vivado 拷贝进来的文件。
+ip/：当前工程使用的 IP。
+bd/：Block Design。
+
+#### Block Design 说明
+
+```text
+IP Integrator
+    ↓
+Create Block Design
+    ↓
+Add IP
+    ↓
+连接各个 IP
+```
+
+这样设计类似于图形化设计，就是把封装好的IP通过画图连接成目标模块，它会保存在 bd/ 下的文件里，方便后续调用
