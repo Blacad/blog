@@ -185,19 +185,31 @@ Xilinx IP 有：
 - 各种通信接口等
 
 IP 封装可以选择 带源文件的版本，也可以选择 不带源文件的版本，
-带源文件时比较方便，不带源文件时配置起来会比较麻烦，需要跑综合，然后得到 .edf 和 .v 端口文件
+带源文件时比较方便，不带源文件时配置起来会比较麻烦，需要跑综合并在 TCL Console 中输入命令得到 .edf 和 .v 端口文件
 
 带源文件 - xgui、component、source
-不带源文件 - xgui、component、.edf、.v
-- .edf：真正的电路实现。它是综合后的网表，已经从 RTL 变成了门级/逻辑级的连接关系。
-- .v：这里通常不是原始源码，而是 stub 空壳文件，只保留 module 名称和输入输出端口，让 Vivado 和其他 Verilog 模块知道“这个 IP 有哪些接口”。
-- component.xml：描述这个 IP 的名称、版本、端口、文件等封装信息。
 - xgui：描述 Vivado 中 IP 配置界面的相关信息。
+- component.xml：描述这个 IP 的名称、版本、端口、文件等封装信息。
+- source 中包含模块的源码
+不带源文件 - xgui、component、.edf、.v
+- xgui、component.xml 同上
+- .edf：真正的电路实现。它是综合后的网表，已经从 RTL 变成了门级/逻辑级的连接关系。
+- .v：这里不是原始源码，而是 stub 空壳文件，只保留 module 名称和输入输出端口，让 Vivado 和其他 Verilog 模块知道“这个 IP 有哪些接口”。
 
+需要在 TCL Console 的命令如下，后面是需要保存的文件绝对位置
 ```tcl
 write_verilog -mode synth_stub .../xxx.v
-write_edif .../xxx.edf
+write_edif .../xxx.edf //对于自己写的模块
+write_edif -security_mode all .../xxx.edf //对于包含 Xilinx IP生成 .edf 文件
 ```
+
+### IP Catalog 方式导入 与 Design Sources 方式导入
+
+IP Catalog 方式导入：模块先经过 Vivado IP Packager 封装，生成 component.xml、xgui 等 IP 描述文件及相应实现文件；再通过 IP Repository 加入 Vivado，在 IP Catalog 中配置并实例化。
+
+Design Sources 方式导入：  
+1. 直接通过 Add Sources 加入 .v 源文件，RTL 实现可见；
+2. 若不希望暴露 RTL，可通过 Add Sources 加入接口 .v 和综合网表 .edf，由 .v 提供模块接口、.edf 提供内部实现。
 
 ### vivado 项目的文件夹目录
 
