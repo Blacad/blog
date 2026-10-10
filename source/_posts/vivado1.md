@@ -191,6 +191,7 @@ IP 封装可以选择 带源文件的版本，也可以选择 不带源文件的
 - xgui：描述 Vivado 中 IP 配置界面的相关信息。
 - component.xml：描述这个 IP 的名称、版本、端口、文件等封装信息。
 - source 中包含模块的源码
+
 不带源文件 - xgui、component、.edf、.v
 - xgui、component.xml 同上
 - .edf：真正的电路实现。它是综合后的网表，已经从 RTL 变成了门级/逻辑级的连接关系。
