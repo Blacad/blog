@@ -1,47 +1,61 @@
----
-title: Agent随想
-date: 2026-10-15 21:00:15
-categories:
- - 实践技术
-tags:
- - Agent
- - LLM
-comments: true
----
+# Agent 工程实践的一些思考
 
-本文记录自己对于 Agent 技术在工程实践上的一些随想和思考，部分观点可能已经是业界公认的
-<!--more-->
+本文记录自己对于 AI Agent 在工程实践中的一些思考，主要讨论面对新任务时，如何以合理的成本优化 Agent 的性能。
+
+\<!--more-->
 
 ## 良好的工程实践
 
-当我们面临一个新的问题或者场景且该情况下需要使用 AI Agent 来解决问题时，较好的实践优化顺序是：
+当我们面临一个新的问题或应用场景，并希望通过 AI Agent 解决时，我认为比较合理的优化顺序是：
 
-1. Context Engineering
-    - naive prompt
-    - target/new skills
-    - target/new tools
-    - target/new workflow
-    - Methods without changing the model's parameters and focus on the prompts. Of course, these methods may involve training.
-2. Training
-    - collect data of the target task and training
-    - multiple training methods (SFT、RL and so on)
-        - Deepseek-R1 recipe 是一个不错的参考，当然现在的 GLM 的新 recipe 也不错，可以参考
-    - Methods on the model's parameters
+### 1. Context Engineering
 
-在常见场景中，我们往往只会做第一步 Context Engineering，只有在模型真的不行时才会考虑 Training
+优先优化模型能够获取的信息及其组织方式，在不修改模型参数的前提下提升任务表现。
 
-## AI Agent 引发的下一步思考
+- **Prompt Engineering**：从 Naive Prompt 开始，逐步优化任务描述、约束条件和输出格式。
+- **Skills**：针对特定任务引入或设计可复用的 Skills，将领域知识与操作经验组织起来。
+- **Tools**：按需引入 Search、RAG、Code Execution 等工具，扩展模型获取信息和执行操作的能力。
+- **Context Management**：合理组织和管理上下文，控制信息加载、检索与压缩，减少无关信息干扰。
 
-在计算机的语境下，模型参数的搜索空间实则是有限的(计算机精度有限)，当某个模型定义的函数集搜寻出普遍公认的最优解时(最优解的假设是基于模型目的得到的，可能在表现上看是各Benchmark的分数)，如果希望进一步优化能走的路径只有: 改变模型定义的函数集(架构更新)，所有基于 Training 的方式本质上都是在既定的函数集里搜索出最优的函数，其实即使在 meta-learning 的语境下，往往最终的落脚点也是找到最好的解，在这种情形下，我认为 Pareto 确实是一个值得参考的思想，每代模型最好都能有 多个 checkpoints 比较好，公开一个跑分高的，其余用于后续研究。
+这一步的核心在于：**模型表现不佳，并不一定意味着模型能力不足，也可能是缺少必要的信息、工具或任务指导。**
 
-但是，在 Agent 情形下，搜索空间似乎真的无限了，它主要受制于 L(序列长度)，但 L 其实在理论上可以无限长，当然传统注意力机制对于超长建模会有问题，但是这些是模型层面的事情，并不是 Agent 层面的事情，畅想我们拥有一个 注意力建模极强以至于能处理人类世界的无限上下文(以人类的阅读速度直到宇宙热寂也无法阅读完全)以及无限计算资源，那么我们的 Agent 搜索空间大体上就是无限的(假设是基于L的无限)，因此真正在 Agent 层面的事情，确实需要聚焦于 Harness，而不是 model，至于 Agentic RL 如果依然训练 model's parameters，那么我们依然视作是在做model上的功夫。
+### 2. Workflow Engineering
 
-RSI(Recursive Self improve) 和 SI(Self Improve) 技术往往会聚焦于 Agent Harness，我认为这样确实是在做 Agent 上的功夫，但是面对一个几乎无限的搜索空间，我们应该怎么才能找到最优的初始化状态(多轮对话后的Harness从本质上已经改变)？这个状态的各种子组件的配置应该是怎样的？考虑类似RAG的场景，它应该默认配置多少未载入上下文，多少载入上下文(类似OS里的虚拟内存思想或者说编译原理里的动态载入思想)？
+当单次模型调用难以有效解决问题时，可以进一步优化 Agent 的执行流程。
 
-对于 Agent 的思考其实会反馈到模型，模型作为 Agent 的子组件，它的搜索空间是有限的，但是 Agent 的子组件中包含无限子组件，因此 Agent 的搜索空间是无限的，那么单从模型的角度思考 Agent 我认为是没有什么意义的，先辨析好 Agent 的子组件组成，并辨析清楚各个子组件的搜索空间是否有限，将其拆分后再集合分析才有意义。
+例如：
 
-总结来讲，和做 model 研究不同的是，Agent 研究由于将 Harness 考虑在内，它研究的其实是最优的 Agent 初始状态，但是目的是一样的，即在通用任务上能达到最好的性能。
+- **Planning**：将复杂任务拆解为多个子任务。
+- **Reflection / Verification**：引入结果检查、错误反馈与迭代修正。
+- **Multi-Agent Collaboration**：通过多个 Agent 的分工协作完成复杂任务。
+- **Workflow Optimization**：根据任务特点设计执行顺序、条件分支和终止机制。
 
+与 Context Engineering 不同，Workflow Engineering 更关注**如何组织模型的多次调用、工具执行和反馈过程**，而不仅是向模型提供什么信息。
 
+不过，更复杂的 Workflow 并不一定带来更好的效果。额外的推理步骤可能增加延迟、Token 开销，甚至引入错误，因此应根据实际收益决定是否采用。
 
+### 3. Model Training
 
+当 Context Engineering 和 Workflow Engineering 仍无法满足任务需求时，再考虑通过训练提升模型能力。
+
+- **Data Collection**：收集和构建目标任务的数据。
+- **SFT**：通过监督微调增强模型对特定任务的适应能力。
+- **RL**：通过奖励反馈进一步优化模型行为，例如 DeepSeek-R1 等工作所采用的训练思路。
+
+与前两种方式相比，Training 直接改变模型参数，通常需要更高的数据、算力和实验成本，并且可能面临过拟合、能力退化等问题。
+
+因此，是否需要训练，应取决于当前模型是否存在难以通过外部信息和执行机制弥补的能力缺口。
+
+## 总结
+
+在实际工程中，我更倾向于采用以下优化顺序：
+
+**Context Engineering → Workflow Engineering → Model Training**
+
+前两者通常具有更低的试错成本，并且能够充分挖掘现有模型的能力；只有当它们无法满足需求，或者训练具有明确的长期收益时，才进一步考虑参数优化。
+
+当然，这并不是严格的线性流程。三者之间存在相互影响，实际开发中往往需要反复迭代。
+
+**核心原则是：优先通过成本更低、可验证且易于维护的方式解决问题，而不是一开始就选择训练模型或构建复杂的 Agent 系统。**
+
+补充三层方法的评估标准区分 Context 与 Workflow 边界弱化过于绝对的优化顺序
